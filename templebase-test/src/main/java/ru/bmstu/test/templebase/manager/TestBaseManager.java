@@ -5,8 +5,11 @@ import ru.bmstu.tamplebase.model.TempleFields;
 import ru.bmstu.templebase.manager.BaseManager;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestBaseManager implements BaseManager<Temple, TempleFields> {
+    private Map<Integer, Temple> templMap = new HashMap<>();
 
     @Override
     public void add(Temple temple) {
