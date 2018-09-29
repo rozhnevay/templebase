@@ -1,0 +1,8 @@
+docker-machine create box
+
+docker-machine env box
+docker-machine restart env
+docker-machine regenerate-certs box
+
+& "C:\Program Files\Docker Toolbox\docker-machine.exe" env box | Invoke-Expression
+
