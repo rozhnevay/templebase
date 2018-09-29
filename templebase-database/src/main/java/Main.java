@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 public class Main {
     private final String driverName = "com.mysql.jdbc.Driver";
-    private final String connectionString = "jdbc:mysql://localhost:3306/test";
+    private final String connectionString = "jdbc:mysql://localhost:3306/temple";
     private final String login = "root";
     private final String password = "password";
     public void run() {
@@ -17,7 +17,7 @@ public class Main {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(connectionString, login, password);
-            connection.createStatement().executeQuery("select * from test");
+            connection.createStatement().executeQuery("select * from temple");
         } catch (SQLException e) {
             System.out.println("Can't get connection. Incorrect URL");
             e.printStackTrace();
