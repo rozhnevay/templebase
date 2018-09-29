@@ -27,6 +27,11 @@ public class TestBaseManager implements BaseManager<Temple, TempleFields> {
     }
 
     @Override
+    public Collection<Temple> getAll() {
+        return templeMap.values();
+    }
+
+    @Override
     public void update(Temple temple) {
         templeMap.put(temple.getId(),temple);
     }
@@ -47,7 +52,7 @@ public class TestBaseManager implements BaseManager<Temple, TempleFields> {
     public Collection<Temple> searchBy(TempleFields field, String value) {
         switch (field){
             case ID:return Collections.singletonList(get(Integer.valueOf(value)));
-            case NAME:break;
+            case NAME:searchByName(value);
         }
         return null;
     }
