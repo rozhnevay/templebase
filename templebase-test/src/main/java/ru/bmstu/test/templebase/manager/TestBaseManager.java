@@ -4,9 +4,7 @@ import ru.bmstu.tamplebase.model.Temple;
 import ru.bmstu.tamplebase.model.TempleFields;
 import ru.bmstu.templebase.manager.BaseManager;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TestBaseManager implements BaseManager<Temple, TempleFields> {
     private Map<Integer, Temple> templeMap = new HashMap<>();
@@ -47,7 +45,20 @@ public class TestBaseManager implements BaseManager<Temple, TempleFields> {
 
     @Override
     public Collection<Temple> searchBy(TempleFields field, String value) {
-        TempleFields.ID();
+        switch (field){
+            case ID:return Collections.singletonList(get(Integer.valueOf(value)));
+            case NAME:break;
+        }
         return null;
+    }
+
+    private Collection<Temple> searchByName (String name){
+        Set<Temple> templeSet = new HashSet<>();
+        for (Temple t:templeMap.values()){
+            if (t.getName().equals(name)){
+                templeSet.add(t);
+            }
+        }
+        return templeSet;
     }
 }
