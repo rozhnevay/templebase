@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/features",
         glue = "ru.bmstu.test",
-        tags = "@temple",
+        tags = "@databasetemple",
         dryRun = false,
         strict = false,
         snippets = SnippetType.UNDERSCORE

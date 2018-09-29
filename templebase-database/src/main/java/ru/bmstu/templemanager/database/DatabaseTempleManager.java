@@ -35,19 +35,13 @@ public class DatabaseTempleManager implements BaseManager<Temple, TempleFields> 
             e.printStackTrace();
 
         }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            System.out.println("Can't close connection");
-            e.printStackTrace();
-            return;
-        }}
+      }
 
     @Override
     public void add(Temple temple) {
         try{
             Statement st = connection.createStatement();
-            st.execute("insert into temple(id, name) values (" + temple.getId() +"," + temple.getName() +")");
+            st.execute("insert into temple(id, name) values (" + temple.getId() +",'" + temple.getName() +"')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,7 +68,7 @@ public class DatabaseTempleManager implements BaseManager<Temple, TempleFields> 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return temple;
     }
 
     private Temple mapTemple(ResultSet rs) throws SQLException {
@@ -96,21 +90,39 @@ public class DatabaseTempleManager implements BaseManager<Temple, TempleFields> 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return temples;
     }
 
     @Override
     public void update(Temple temple) {
+        try{
+            Statement st = connection.createStatement();
+            st.executeUpdate("update temple set name = " + temple.getName() + " where id = " + temple.getId());
+
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void updateAll(Collection<Temple> temples) {
-
+        for (Temple t:temples) {
+            update(t);
+        }
     }
 
     @Override
     public void delete(int id) {
+        try{
+            Statement st = connection.createStatement();
+            st.execute("delete temple where id = " + id);
 
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
