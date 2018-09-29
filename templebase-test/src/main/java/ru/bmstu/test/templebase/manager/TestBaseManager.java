@@ -9,36 +9,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestBaseManager implements BaseManager<Temple, TempleFields> {
-    private Map<Integer, Temple> templMap = new HashMap<>();
+    private Map<Integer, Temple> templeMap = new HashMap<>();
 
     @Override
     public void add(Temple temple) {
-
+        templeMap.put(temple.getId(), temple);
     }
 
     @Override
     public void addAll(Collection<Temple> temples) {
-
+        for (Temple t:temples) {
+            add(t);
+        }
     }
 
     @Override
     public Temple get(int id) {
-        return null;
+        return templeMap.get(id);
     }
 
     @Override
     public void update(Temple temple) {
-
+        templeMap.put(temple.getId(),temple);
     }
 
     @Override
     public void updateAll(Collection<Temple> temples) {
-
+        for (Temple t:temples) {
+            update(t);
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        templeMap.remove(id);
     }
 
     @Override
